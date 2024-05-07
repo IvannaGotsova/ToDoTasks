@@ -12,12 +12,38 @@
         <form id="AppTopPartForm">
             <input id="AppTopPartInput" type="text"
             placeholder="Add Your Task Here" />
-            <button id="AppTopPartButton">Add</button>
+            <button type="button" id="AppTopPartButton">Add</button>
         </form>
     </section>
     <hr>
     <section class="AppMiddlePart">
         <h3>Remaining Tasks:</h3>
+        <button type="button" id="AppMiddlePartAllButton">Remove Selected</button>
+        <button type="button" id="AppMiddlePartSelectedButton">Remove All Tasks</button>
+        <br>
+        <div class="AppTasksContainer">
+            <div class="AppTaskContainer">
+                <input type="checkbox" id="first-task">
+                <label for="first-task">First Task</label>
+            </div>
+            <div class="AppTaskContainer">
+                <input type="checkbox" id="second-task">
+                <label for="second-task">Second Task</label>
+            </div>
+            <div class="AppTaskContainer">
+                <input type="checkbox" id="third-task">
+                <label for="third-task">Third Task</label>
+            </div>
+            <div class="AppTaskContainer">
+                <input type="checkbox" id="fourth-task">
+                <label for="fourth-task">Fourth Task</label>
+            </div>
+            <div class="AppTaskContainer">
+                <input type="checkbox" id="fifth-task">
+                <label for="fifth-task">Fifth Task</label>
+            </div>
+
+        </div>
     </section>
     <hr>
     <section class="AppBottomPart">

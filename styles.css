@@ -24,3 +24,22 @@ body {
     background-color: lightblue;
     border-radius: 50pt;
 }
+
+.AppBottomPart {
+    background-color: rgb(74, 214, 214);
+}
+
+#AppMiddlePartAllButton, #AppMiddlePartSelectedButton {
+    background-color: lightblue;
+    border-radius: 50pt;
+}
+
+#AppBottomPartInput {
+    background-color: lightblue;
+    border-radius: 50pt;
+}
+
+#AppBottomPartButton, #AppBottomPartAllButton, #AppBottomPartSelectedButton {
+    background-color: lightblue;
+    border-radius: 50pt;
+}

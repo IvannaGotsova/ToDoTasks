@@ -2,44 +2,11 @@ body {
     background-color: rgb(33, 167, 167);
 }
 
-.AppTopPart {
+.AppTopPart, .AppMiddlePart, .AppBottomPart {
     background-color: rgb(74, 214, 214);;
 }
 
-#AppTopPartInput {
-    background-color: lightblue;
-    border-radius: 50pt;
-}
-
-#AppTopPartButton {
-    background-color: lightblue;
-    border-radius: 50pt;
-}
-
-.AppMiddlePart {
-    background-color: rgb(74, 214, 214);;
-}
-
-#AppMiddlePartAllButton, #AppMiddlePartSelectedButton {
-    background-color: lightblue;
-    border-radius: 50pt;
-}
-
-.AppBottomPart {
-    background-color: rgb(74, 214, 214);
-}
-
-#AppMiddlePartAllButton, #AppMiddlePartSelectedButton {
-    background-color: lightblue;
-    border-radius: 50pt;
-}
-
-#AppBottomPartInput {
-    background-color: lightblue;
-    border-radius: 50pt;
-}
-
-#AppBottomPartButton, #AppBottomPartAllButton, #AppBottomPartSelectedButton {
+#AppTopPartInput, #AppBottomPartInput, #AppTopPartButton, #AppMiddlePartAllButton, #AppMiddlePartSelectedButton, #AppMiddlePartAllButton, #AppMiddlePartSelectedButton,  #AppBottomPartButton, #AppBottomPartAllButton, #AppBottomPartSelectedButton{
     background-color: lightblue;
     border-radius: 50pt;
 }

@@ -15,3 +15,12 @@ body {
     background-color: lightblue;
     border-radius: 50pt;
 }
+
+.AppMiddlePart {
+    background-color: rgb(74, 214, 214);;
+}
+
+#AppMiddlePartAllButton, #AppMiddlePartSelectedButton {
+    background-color: lightblue;
+    border-radius: 50pt;
+}

@@ -1,0 +1,17 @@
+body {
+    background-color: rgb(33, 167, 167);
+}
+
+.AppTopPart {
+    background-color: rgb(74, 214, 214);;
+}
+
+#AppTopPartInput {
+    background-color: lightblue;
+    border-radius: 50pt;
+}
+
+#AppTopPartButton {
+    background-color: lightblue;
+    border-radius: 50pt;
+}

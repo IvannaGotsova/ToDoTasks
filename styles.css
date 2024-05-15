@@ -6,7 +6,12 @@ body {
     background-color: rgb(74, 214, 214);;
 }
 
-#AppTopPartInput, #AppBottomPartInputList, #AppBottomPartInputNote, #AppTopPartButton, #AppMiddlePartAllButton, #AppMiddlePartSelectedButton, #AppMiddlePartAllButton, #AppMiddlePartSelectedButton,  #AppBottomPartButtonList, #AppBottomPartButtonNote, #AppBottomPartAllButtonList, #AppBottomPartAllButtonNote, #AppBottomPartSelectedButtonList, #AppBottomPartSelectedButtonNote{
+#AppTopPartInput, #AppBottomPartInputList, #AppBottomPartInputNote, #AppTopPartButton, 
+#AppMiddlePartAllButton, #AppMiddlePartSelectedButton, #AppMiddlePartAllButton, 
+#AppMiddlePartSelectedButton,  #AppBottomPartButtonList, #AppBottomPartButtonNote, 
+#AppBottomPartAllButtonList, #AppBottomPartAllButtonNote, #AppBottomPartSelectedButtonList, 
+#AppBottomPartSelectedButtonNote, #AppBottomPartEditButtonNote, #AppBottomPartEditButtonList,
+#AppMiddlePartEditButtonTask {
     background-color: lightblue;
     border-radius: 50pt;
 }

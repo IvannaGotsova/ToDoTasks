@@ -1,0 +1,19 @@
+body {
+    background-color: rgb(33, 167, 167);
+}
+
+.AppTopPart, .AppMiddlePart, .AppBottomPart {
+    background-color: rgb(74, 214, 214);;
+}
+
+#AppTopPartInput, #AppBottomPartInputList, #AppBottomPartInputNote, #AppTopPartButton, 
+#AppMiddlePartAllButton, #AppMiddlePartSelectedButton, #AppMiddlePartAllButton, 
+#AppMiddlePartSelectedButton,  #AppBottomPartButtonList, #AppBottomPartButtonNote, 
+#AppBottomPartAllButtonList, #AppBottomPartAllButtonNote, #AppBottomPartSelectedButtonList, 
+#AppBottomPartSelectedButtonNote, #AppBottomPartEditButtonNote, #AppBottomPartEditButtonList,
+#AppMiddlePartEditButtonTask, #AppBottomPartButtonAllNotes, #AppBottomPartButtonAllLists,
+#AppMiddlePartButtonAllTasks {
+    background-color: lightblue;
+    border-radius: 50pt;
+}
+

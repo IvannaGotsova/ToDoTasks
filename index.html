@@ -8,114 +8,116 @@
    <title>To Do Tasks</title>
 </head>
 <body>
-    <section class="AppTopPart">
-        <h2>Tasks for Today: <span id="currentDate"></span></h2>
-        <script>
-            var today = new Date();
-            var dd = String(today.getDate()).padStart(2, '0');
-            var mm = String(today.getMonth() + 1).padStart(2, '0'); 
-            var yyyy = today.getFullYear();
-            today = mm + '/' + dd + '/' + yyyy;
-            document.getElementById("currentDate").innerHTML = today;
-        </script>
-        <h3>Add New Task</h3>
-        <form id="AppTopPartForm">
-            <input id="AppTopPartInput" type="text" placeholder="Add Your Task Here" />
-            <button type="button" id="AppTopPartButton">Add</button>
-        </form>
-    </section>
-    <hr>
-    <section class="AppMiddlePart">
-        <h3>Remaining Tasks:</h3>
-        <button type="button" id="AppMiddlePartAllButton">Remove Selected</button>
-        <button type="button" id="AppMiddlePartSelectedButton">Remove All Tasks</button>
-        <br>
-        <div class="AppTasksContainer">
-            <div class="AppTaskContainer">
-                <input type="checkbox" id="first-task">
-                <label for="first-task">First Task</label>
-                <button type="button" id="AppMiddlePartEditButtonTask">Edit</button>
-            </div>
-            <div class="AppTaskContainer">
-                <input type="checkbox" id="second-task">
-                <label for="second-task">Second Task</label>
-                <button type="button" id="AppMiddlePartEditButtonTask">Edit</button>
-            </div>
-            <div class="AppTaskContainer">
-                <input type="checkbox" id="third-task">
-                <label for="third-task">Third Task</label>
-                <button type="button" id="AppMiddlePartEditButtonTask">Edit</button>
-            </div>
-            <div class="AppTaskContainer">
-                <input type="checkbox" id="fourth-task">
-                <label for="fourth-task">Fourth Task</label>
-                <button type="button" id="AppMiddlePartEditButtonTask">Edit</button>
-            </div>
-            <div class="AppTaskContainer">
-                <input type="checkbox" id="fifth-task">
-                <label for="fifth-task">Fifth Task</label>
-                <button type="button" id="AppMiddlePartEditButtonTask">Edit</button>
-            </div>
+    <main>
+        <section class="AppTopPart">
+            <h2>Tasks for Today: <span id="currentDate"></span></h2>
+            <script>
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+                var yyyy = today.getFullYear();
+                today = mm + '/' + dd + '/' + yyyy;
+                document.getElementById("currentDate").innerHTML = today;
+            </script>
+            <h3>Add New Task</h3>
+            <form id="AppTopPartForm">
+                <input id="AppTopPartInput" type="text" placeholder="Add Your Task Here" />
+                <button type="button" id="AppTopPartButton">Add</button>
+            </form>
+        </section>
+        <hr>
+        <section class="AppMiddlePart">
+            <h3>Remaining Tasks:</h3>
+            <button type="button" id="AppMiddlePartAllButton">Remove Selected</button>
+            <button type="button" id="AppMiddlePartSelectedButton">Remove All Tasks</button>
             <br>
-            <a href="html\tasks.html"><button type="button" id="AppMiddlePartButtonAllTasks">All Tasks</button></a>
-        </div>
-    </section>
-    <hr>
-    <section class="AppBottomPart">
-        <h3>Lists!!!</h3>
-        <input id="AppBottomPartInputList" type="text"
-            placeholder="Add Your List Here" />
-        <button type="button" id="AppBottomPartButtonList">Add</button>
-        <button type="button" id="AppBottomPartAllButtonList">Remove Selected</button>
-        <button type="button" id="AppBottomPartSelectedButtonList">Remove All Lists</button>     
-        <br>
-        <br>   
-        <div class="AppListsContainer">
-            <div class="AppListContainer">
-                <input type="checkbox" id="first-list">
-                <a href="html\list.html">First List</a>
-                <button type="button" id="AppBottomPartEditButtonList">Edit</button>
+            <div class="AppTasksContainer">
+                <div class="AppTaskContainer">
+                    <input type="checkbox" id="first-task">
+                    <label for="first-task">First Task</label>
+                    <button type="button" id="AppMiddlePartEditButtonTask">Edit</button>
+                </div>
+                <div class="AppTaskContainer">
+                    <input type="checkbox" id="second-task">
+                    <label for="second-task">Second Task</label>
+                    <button type="button" id="AppMiddlePartEditButtonTask">Edit</button>
+                </div>
+                <div class="AppTaskContainer">
+                    <input type="checkbox" id="third-task">
+                    <label for="third-task">Third Task</label>
+                    <button type="button" id="AppMiddlePartEditButtonTask">Edit</button>
+                </div>
+                <div class="AppTaskContainer">
+                    <input type="checkbox" id="fourth-task">
+                    <label for="fourth-task">Fourth Task</label>
+                    <button type="button" id="AppMiddlePartEditButtonTask">Edit</button>
+                </div>
+                <div class="AppTaskContainer">
+                    <input type="checkbox" id="fifth-task">
+                    <label for="fifth-task">Fifth Task</label>
+                    <button type="button" id="AppMiddlePartEditButtonTask">Edit</button>
+                </div>
+                <br>
+                <a href="html\tasks.html"><button type="button" id="AppMiddlePartButtonAllTasks">All Tasks</button></a>
             </div>
-            <div class="AppListContainer">
-                <input type="checkbox" id="second-list">
-                <a href="html\list.html">Second List</a>
-                <button type="button" id="AppBottomPartEditButtonList">Edit</button>
-            </div>
-            <div class="AppListContainer">
-                <input type="checkbox" id="third-list">
-                <a href="html\list.html">Third List</a>
-                <button type="button" id="AppBottomPartEditButtonList">Edit</button>
-            </div>
+        </section>
+        <hr>
+        <section class="AppBottomPart">
+            <h3>Lists!!!</h3>
+            <input id="AppBottomPartInputList" type="text"
+                placeholder="Add Your List Here" />
+            <button type="button" id="AppBottomPartButtonList">Add</button>
+            <button type="button" id="AppBottomPartAllButtonList">Remove Selected</button>
+            <button type="button" id="AppBottomPartSelectedButtonList">Remove All Lists</button>     
             <br>
-            <a href="html\lists.html"><button type="button" id="AppBottomPartButtonAllLists">All Lists</button></a>
-        </div>
-        <h3>Notes!!!</h3>
-        <input id="AppBottomPartInputNote" type="text"
-            placeholder="Add Your Note Here" />
-        <button type="button" id="AppBottomPartButtonNote">Add</button>
-        <button type="button" id="AppBottomPartAllButtonNote">Remove Selected</button>
-        <button type="button" id="AppBottomPartSelectedButtonNote">Remove All Notes</button>  
-        <br>
-        <br>         
-        <div class="AppNotesContainer">
-            <div class="AppNoteContainer">
-                <input type="checkbox" id="first-note">
-                <a href="html\note.html">First Note</a>
-                <button type="button" id="AppBottomPartEditButtonNote">Edit</button>
+            <br>   
+            <div class="AppListsContainer">
+                <div class="AppListContainer">
+                    <input type="checkbox" id="first-list">
+                    <a href="html\list.html">First List</a>
+                    <button type="button" id="AppBottomPartEditButtonList">Edit</button>
+                </div>
+                <div class="AppListContainer">
+                    <input type="checkbox" id="second-list">
+                    <a href="html\list.html">Second List</a>
+                    <button type="button" id="AppBottomPartEditButtonList">Edit</button>
+                </div>
+                <div class="AppListContainer">
+                    <input type="checkbox" id="third-list">
+                    <a href="html\list.html">Third List</a>
+                    <button type="button" id="AppBottomPartEditButtonList">Edit</button>
+                </div>
+                <br>
+                <a href="html\lists.html"><button type="button" id="AppBottomPartButtonAllLists">All Lists</button></a>
             </div>
-            <div class="AppNoteContainer">
-                <input type="checkbox" id="second-note">
-                <a href="html\note.html">Second Note</a>
-                <button type="button" id="AppBottomPartEditButtonNote">Edit</button>
-            </div>
-            <div class="AppNoteContainer">
-                <input type="checkbox" id="third-note">
-                <a href="html/note.html">Third Note</a>
-                <button type="button" id="AppBottomPartEditButtonNote">Edit</button>
-            </div>
+            <h3>Notes!!!</h3>
+            <input id="AppBottomPartInputNote" type="text"
+                placeholder="Add Your Note Here" />
+            <button type="button" id="AppBottomPartButtonNote">Add</button>
+            <button type="button" id="AppBottomPartAllButtonNote">Remove Selected</button>
+            <button type="button" id="AppBottomPartSelectedButtonNote">Remove All Notes</button>  
             <br>
-            <a href="html\notes.html"><button type="button" id="AppBottomPartButtonAllNotes">All Notes</button></a>
-        </div>
-    </section>
+            <br>         
+            <div class="AppNotesContainer">
+                <div class="AppNoteContainer">
+                    <input type="checkbox" id="first-note">
+                    <a href="html\note.html">First Note</a>
+                    <button type="button" id="AppBottomPartEditButtonNote">Edit</button>
+                </div>
+                <div class="AppNoteContainer">
+                    <input type="checkbox" id="second-note">
+                    <a href="html\note.html">Second Note</a>
+                    <button type="button" id="AppBottomPartEditButtonNote">Edit</button>
+                </div>
+                <div class="AppNoteContainer">
+                    <input type="checkbox" id="third-note">
+                    <a href="html/note.html">Third Note</a>
+                    <button type="button" id="AppBottomPartEditButtonNote">Edit</button>
+                </div>
+                <br>
+                <a href="html\notes.html"><button type="button" id="AppBottomPartButtonAllNotes">All Notes</button></a>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

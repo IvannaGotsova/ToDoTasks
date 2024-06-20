@@ -15,5 +15,7 @@ body {
 #AppMiddlePartButtonAllTasks {
     background-color: lightblue;
     border-radius: 50pt;
+    border-color: black;
+    border-style: solid;
 }
 

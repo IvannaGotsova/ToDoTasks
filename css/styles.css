@@ -14,7 +14,8 @@ body {
 #AppBottomPartAllButtonList, #AppBottomPartAllButtonNote, #AppBottomPartSelectedButtonList, 
 #AppBottomPartSelectedButtonNote, #AppBottomPartEditButtonNote, #AppBottomPartEditButtonList,
 #AppMiddlePartEditButtonTask, #AppBottomPartButtonAllNotes, #AppBottomPartButtonAllLists,
-#AppMiddlePartButtonAllTasks {
+#AppMiddlePartButtonAllTasks, #AppMiddlePartDoneButtonTask, #AppBottomPartDoneButtonList, 
+#AppBottomPartDoneButtonNote {
     background-color: lightblue;
     border-radius: 50pt;
     border-color: 5px solid black;

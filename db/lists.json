@@ -1,5 +1,4 @@
-{
-    "lists": [
+[
     {
       "id": "1",
       "title": "First",
@@ -50,5 +49,4 @@
         "title": "Tenth",
         "description": "A tenth list."
     }
-  ]
-}
+]

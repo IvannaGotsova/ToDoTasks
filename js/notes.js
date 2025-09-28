@@ -1,26 +1,43 @@
-export default class Notes {
-    constructor() {
-        this._notes = [];
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  fetch(`../db/notes.json?ts=${Date.now()}`, { cache: "reload" })
 
-    getNotes() {
-        return this._notes;
-    }
+    .then(response => response.json())
+    .then(data => {
+      const list = document.getElementById("notes-list");
 
-    addNote(noteObject) {
-        this._notes.push(noteObject);
-    }
+      data.notes.forEach((item, index) => {
+        const noteContainer = document.createElement("div");
+        noteContainer.classList.add("note-item");
 
-    removeAllNotes(id) {
-        for (let index = 0; index < this._notes.length; index++) {
-            if (this._notes[i]._id == id) {
-                this._notes.splice(i, 1);
-                break;
-            }
-        }
-    }
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = `note-${index}`;
 
-    removeSelectedNotes() {
-        this._notes = [];
-    }
-}
+        const a = document.createElement("a");
+        a.textContent = item.title;
+        a.href = item.href || "#"; 
+        a.target = "_blank";
+        a.style.marginLeft = "8px";
+
+        const doneButton = document.createElement("button");
+        doneButton.type = "button";
+        doneButton.id = `done-${index}`;
+        doneButton.textContent = "Done";
+        doneButton.classList.add("btn-done");
+
+        const editButton = document.createElement("button");
+        editButton.type = "button";
+        editButton.id = `edit-${index}`;
+        editButton.textContent = "Edit";
+        editButton.classList.add("btn-edit");
+
+        noteContainer.appendChild(checkbox);
+        noteContainer.appendChild(a);
+        noteContainer.appendChild(doneButton);
+        noteContainer.appendChild(editButton);
+
+        list.appendChild(noteContainer);
+      });
+    })
+    .catch(error => console.error("Error loading JSON:", error));
+});

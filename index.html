@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <script type="module" src="js/main.js"></script>
-    <script src="js\manageHeaderFooter.js"></script>
     <title>To Do Tasks</title>
 </head>
 <body>
@@ -28,47 +27,27 @@
             </form>
         </section>
         <hr>
+
         <section class="AppMiddlePart">
             <h3>Remaining Tasks:</h3>
+              <div id="tasks-list"></div>
+              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+              <script>
+                $(function ()
+                   {
+                    $.getScript("js/tasks.js");
+                  });
+              </script>
+              <br>
+
             <button type="button" id="AppMiddlePartAllButton">Remove Selected</button>
             <button type="button" id="AppMiddlePartSelectedButton">Remove All Tasks</button>
             <br>
-            <div class="AppTasksContainer">
-                <div class="AppTaskContainer">
-                    <input type="checkbox" id="first-task">
-                    <label for="first-task">First Task</label>
-                    <button type="button" id="AppMiddlePartDoneButtonTask">Done</button>
-                    <button type="button" id="AppMiddlePartEditButtonTask">Edit</button>
-                </div>
-                <div class="AppTaskContainer">
-                    <input type="checkbox" id="second-task">
-                    <label for="second-task">Second Task</label>
-                    <button type="button" id="AppMiddlePartDoneButtonTask">Done</button>
-                    <button type="button" id="AppMiddlePartEditButtonTask">Edit</button>
-                </div>
-                <div class="AppTaskContainer">
-                    <input type="checkbox" id="third-task">
-                    <label for="third-task">Third Task</label>
-                    <button type="button" id="AppMiddlePartDoneButtonTask">Done</button>
-                    <button type="button" id="AppMiddlePartEditButtonTask">Edit</button>
-                </div>
-                <div class="AppTaskContainer">
-                    <input type="checkbox" id="fourth-task">
-                    <label for="fourth-task">Fourth Task</label>
-                    <button type="button" id="AppMiddlePartDoneButtonTask">Done</button>
-                    <button type="button" id="AppMiddlePartEditButtonTask">Edit</button>
-                </div>
-                <div class="AppTaskContainer">
-                    <input type="checkbox" id="fifth-task">
-                    <label for="fifth-task">Fifth Task</label>
-                    <button type="button" id="AppMiddlePartDoneButtonTask">Done</button>
-                    <button type="button" id="AppMiddlePartEditButtonTask">Edit</button>
-                </div>
-                <br>
-                <a href="html\tasks.html"><button type="button" id="AppMiddlePartButtonAllTasks">All Tasks</button></a>
-            </div>
+            <br>
+            <button type="button" id="AppMiddlePartAllTasksButton">All Tasks</button>
         </section>
         <hr>
+
         <section class="AppBottomPart">
             <h3>Lists!!!</h3>
             <input id="AppBottomPartInputList" type="text"
@@ -78,29 +57,22 @@
             <button type="button" id="AppBottomPartSelectedButtonList">Remove All Lists</button>     
             <br>
             <br>   
+
+            <div id="lists-list"></div>
+              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+              <script>
+                $(function ()
+                   {
+                    $.getScript("js/lists.js");
+                  });
+              </script>
+              <br>
             <div class="AppListsContainer">
-                <div class="AppListContainer">
-                    <input type="checkbox" id="first-list">
-                    <a href="html\list.html">First List</a>
-                    <button type="button" id="AppBottomPartDoneButtonList">Done</button>
-                    <button type="button" id="AppBottomPartEditButtonList">Edit</button>
-                </div>
-                <div class="AppListContainer">
-                    <input type="checkbox" id="second-list">
-                    <a href="html\list.html">Second List</a>
-                    <button type="button" id="AppBottomPartDoneButtonList">Done</button>
-                    <button type="button" id="AppBottomPartEditButtonList">Edit</button>
-                </div>
-                <div class="AppListContainer">
-                    <input type="checkbox" id="third-list">
-                    <a href="html\list.html">Third List</a>
-                    <button type="button" id="AppBottomPartDoneButtonList">Done</button>
-                    <button type="button" id="AppBottomPartEditButtonList">Edit</button>
-                </div>
                 <br>
                 <a href="html\lists.html"><button type="button" id="AppBottomPartButtonAllLists">All Lists</button></a>
             </div>
             <hr>
+
             <h3>Notes!!!</h3>
             <input id="AppBottomPartInputNote" type="text"
                 placeholder="Add Your Note Here" />
@@ -109,30 +81,24 @@
             <button type="button" id="AppBottomPartSelectedButtonNote">Remove All Notes</button>  
             <br>
             <br>         
+            <div id="notes-list"></div>
+              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+              <script>
+                $(function ()
+                   {
+                    $.getScript("js/notes.js");
+                  });
+              </script>
+              <br>
             <div class="AppNotesContainer">
-                <div class="AppNoteContainer">
-                    <input type="checkbox" id="first-note">
-                    <a href="html\note.html">First Note</a>
-                    <button type="button" id="AppBottomPartDoneButtonNote">Done</button>
-                    <button type="button" id="AppBottomPartEditButtonNote">Edit</button>
-                </div>
-                <div class="AppNoteContainer">
-                    <input type="checkbox" id="second-note">
-                    <a href="html\note.html">Second Note</a>
-                    <button type="button" id="AppBottomPartDoneButtonNote">Done</button>
-                    <button type="button" id="AppBottomPartEditButtonNote">Edit</button>
-                </div>
-                <div class="AppNoteContainer">
-                    <input type="checkbox" id="third-note">
-                    <a href="html/note.html">Third Note</a>
-                    <button type="button" id="AppBottomPartDoneButtonNote">Done</button>
-                    <button type="button" id="AppBottomPartEditButtonNote">Edit</button>
-                </div>
                 <br>
                 <a href="html\notes.html"><button type="button" id="AppBottomPartButtonAllNotes">All Notes</button></a>
             </div>
         </section>
     </main>
     <custom-footer></custom-footer>
+  <script src="js/tasks.js"></script>
+  <script src="js/lists.js"></script>
+  <script src="js/notes.js"></script>
 </body>
 </html>

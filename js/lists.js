@@ -1,26 +1,43 @@
-export default class Lists {
-    constructor() {
-        this._lists = [];
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  fetch(`../db/lists.json?ts=${Date.now()}`, { cache: "reload" })
 
-    getLists() {
-        return this._lists;
-    }
+    .then(response => response.json())
+    .then(data => {
+      const list = document.getElementById("lists-list");
 
-    addList(listObject) {
-        this._lists.push(listObject);
-    }
+      data.forEach((item, index) => {
+        const listContainer = document.createElement("div");
+        listContainer.classList.add("list-item");
 
-    removeAllLists(id) {
-        for (let index = 0; index < this._lists.length; index++) {
-            if (this._lists[i]._id == id) {
-                this._lists.splice(i, 1);
-                break;
-            }
-        }
-    }
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = `list-${index}`;
 
-    removeSelectedLists() {
-        this._lists = [];
-    }
-}
+        const a = document.createElement("a");
+        a.textContent = item.title;
+        a.href = item.href || "#"; 
+        a.target = "_blank";
+        a.style.marginLeft = "8px";
+
+        const doneButton = document.createElement("button");
+        doneButton.type = "button";
+        doneButton.id = `done-${index}`;
+        doneButton.textContent = "Done";
+        doneButton.classList.add("btn-done");
+
+        const editButton = document.createElement("button");
+        editButton.type = "button";
+        editButton.id = `edit-${index}`;
+        editButton.textContent = "Edit";
+        editButton.classList.add("btn-edit");
+
+        listContainer.appendChild(checkbox);
+        listContainer.appendChild(a);
+        listContainer.appendChild(doneButton);
+        listContainer.appendChild(editButton);
+
+        list.appendChild(listContainer);
+      });
+    })
+    .catch(error => console.error("Error loading JSON:", error));
+});

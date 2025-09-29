@@ -8,14 +8,10 @@ body {
     text-shadow: 1px 1px 5px;
 }
 
-#AppTopPartInput, #AppBottomPartInputList, #AppBottomPartInputNote, #AppTopPartButton, 
-#AppMiddlePartAllButton, #AppMiddlePartSelectedButton, #AppMiddlePartAllButton, 
-#AppMiddlePartSelectedButton,  #AppBottomPartButtonList, #AppBottomPartButtonNote, 
-#AppBottomPartAllButtonList, #AppBottomPartAllButtonNote, #AppBottomPartSelectedButtonList, 
-#AppBottomPartSelectedButtonNote, #AppBottomPartEditButtonNote, #AppBottomPartEditButtonList,
-#AppMiddlePartEditButtonTask, #AppBottomPartButtonAllNotes, #AppBottomPartButtonAllLists,
-#AppMiddlePartButtonAllTasks, #AppMiddlePartDoneButtonTask, #AppBottomPartDoneButtonList, 
-#AppBottomPartDoneButtonNote {
+.task-item, .list-item, .note-item, .btn-done, .btn-edit, #AppMiddlePartAllButton, #AppMiddlePartSelectedButton, #AppTopPartButton,
+#AppBottomPartButtonList, #AppBottomPartAllButtonList, #AppBottomPartSelectedButtonList, #AppBottomPartButtonAllLists,
+#AppBottomPartButtonNote, #AppBottomPartAllButtonNote, #AppBottomPartSelectedButtonNote, #AppBottomPartButtonAllNotes,
+#AppMiddlePartAllTasksButton {
     background-color: lightblue;
     border-radius: 50pt;
     border-color: 5px solid black;

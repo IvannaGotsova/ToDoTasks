@@ -21,10 +21,10 @@
                 document.getElementById("currentDate").innerHTML = today;
             </script>
             <h3>Add New Task</h3>
-            <form id="AppTopPartForm">
+            <div id="AppTopPartForm">
                 <input id="AppTopPartInput" type="text" placeholder="Add Your Task Here" />
-                <button type="submit" id="AppTopPartButton">Add</button>
-            </form>
+                <button type="button" id="AppTopPartButton">Add</button>
+            </div>
         </section>
         <hr>
         
@@ -38,13 +38,14 @@
                     $.getScript("js/tasks.js");
                   });
               </script>
+              <div id="taskList"></div>
               <br>
 
-            <button type="button" id="AppMiddlePartAllButton">Remove Selected</button>
+            <button type="button" id="AppMiddlePartAllButton" onclick="deleteCheckedTasks()">Remove Selected</button>
             <button type="button" id="AppMiddlePartSelectedButton">Remove All Tasks</button>
             <br>
             <br>
-            <button type="button" id="AppMiddlePartAllTasksButton">All Tasks</button>
+            <button type="button" id="AppMiddlePartAllTasksButton" onclick="loadTasks()">All Tasks</button>
         </section>
         <hr>
 
@@ -100,5 +101,6 @@
   <script src="js/tasks.js"></script>
   <script src="js/lists.js"></script>
   <script src="js/notes.js"></script>
+  <script src="js/tasks-actions.js" defer></script>
 </body>
 </html>

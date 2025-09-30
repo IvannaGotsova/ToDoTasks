@@ -41,11 +41,11 @@
               <div id="taskList"></div>
               <br>
 
-            <button type="button" id="AppMiddlePartAllButton" onclick="deleteCheckedTasks()">Remove Selected</button>
+            <button type="button" id="AppMiddlePartAllButton" onclick=deleteCheckedTasks()>Remove Selected</button>
             <button type="button" id="AppMiddlePartSelectedButton">Remove All Tasks</button>
             <br>
             <br>
-            <button type="button" id="AppMiddlePartAllTasksButton" onclick="loadTasks()">All Tasks</button>
+            <button type="button" id="AppMiddlePartAllTasksButton">All Tasks</button>
         </section>
         <hr>
 
@@ -98,9 +98,10 @@
         </section>
     </main>
     <custom-footer></custom-footer>
-  <script src="js/tasks.js"></script>
   <script src="js/lists.js"></script>
   <script src="js/notes.js"></script>
+  <script src="js/tasks.js"></script>
+  <script src="js/tasks-all.js" defer></script>
   <script src="js/tasks-actions.js" defer></script>
 </body>
 </html>

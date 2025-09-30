@@ -90,4 +90,19 @@
 
   }
 
+  function editTask(updatedTask) {
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks = tasks.map(task => {
+      if (task.id === updatedTask.id) {
+        return {
+          ...task, 
+          title: updatedTask.title,
+          description: updatedTask.description
+        };
+      }
+      return task;
+    });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
+  
   

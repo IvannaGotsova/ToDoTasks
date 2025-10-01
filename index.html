@@ -71,7 +71,7 @@
               <br>
             <div class="AppListsContainer">
                 <br>
-                <a href="html\lists.html"><button type="button" id="AppBottomPartButtonAllLists">All Lists</button></a>
+                <button type="button" id="AppBottomPartButtonAllLists">All Lists</button></a>
             </div>
             <hr>
 
@@ -89,21 +89,24 @@
                     $.getScript("js/notes.js");
                   });
               </script>
+              <div id="noteList"></div>
               <br>
             <button type="button" id="AppBottomPartAllButtonNote">Remove Selected</button>
             <button type="button" id="AppBottomPartSelectedButtonNote">Remove All Notes</button>  
               <br>
             <div class="AppNotesContainer">
                 <br>
-                <a href="html\notes.html"><button type="button" id="AppBottomPartButtonAllNotes">All Notes</button></a>
+                <button type="button" id="AppBottomPartButtonAllNotes">All Notes</button></a>
             </div>
         </section>
     </main>
     <custom-footer></custom-footer>
   <script src="js/lists.js"></script>
-  <script src="js/notes.js"></script>
   <script src="js/tasks.js"></script>
   <script src="js/tasks-all.js" defer></script>
   <script src="js/tasks-actions.js" defer></script>
+  <script src="js/notes.js"></script>
+  <script src="js/notes-all.js" defer></script>
+  <script src="js/notes-actions.js" defer></script>
 </body>
 </html>

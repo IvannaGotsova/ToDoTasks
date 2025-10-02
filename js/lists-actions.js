@@ -116,3 +116,49 @@ function doneList(list) {
   localStorage.setItem(`list-${list.id}-done`, "true");
 }
 
+
+
+const lists = JSON.parse(localStorage.getItem("lists")) || [];
+const listList = document.getElementById("listList");
+
+function openList(listId) {
+  const lists = JSON.parse(localStorage.getItem("lists")) || [];
+  const list = lists.find(t => t.id === listId);
+
+  if (!list) {
+    alert("list not found!");
+    return;
+  }
+
+  const newTab = window.open("", "_blank");
+
+  let html = `
+    <html>
+      <head>
+        <title>List Details</title>
+        <style>
+          body { font-family: Arial, sans-serif; padding: 20px; background-color: rgb(33, 167, 167);
+    text-shadow: 1px 1px 5px;}
+          .completed { text-decoration: line-through; color: black; }
+        </style>
+      </head>
+      <body>
+        <h1>List Details</h1>
+        <p><strong>ID:</strong> ${list.id}</p>
+        <p><strong>Title:</strong> <span class="${list.completed ? 'completed' : ''}">
+          ${list.title}
+          <p><strong>Description:</strong> <span class="${list.completed ? 'completed' : ''}">
+          ${list.description}
+        </span></p>
+        <p><strong>Status:</strong> ${list.completed ? "Completed" : "Pending"}</p>
+      </body>
+    </html>
+  `;
+
+  newTab.document.write(html);
+  newTab.document.close();
+}
+
+
+
+

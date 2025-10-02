@@ -93,3 +93,18 @@ function addListToList(list) {
   document.getElementById("listList").appendChild(li);
 }
 
+function editList(updatedList) {
+  let lists = JSON.parse(localStorage.getItem("lists")) || [];
+  lists = lists.map(list => {
+    if (list.id === updatedList.id) {
+      return {
+        ...list, 
+        title: updatedList.title,
+        description: updatedList.description
+      };
+    }
+    return list;
+  });
+  localStorage.setItem("lists", JSON.stringify(lists));
+}
+  

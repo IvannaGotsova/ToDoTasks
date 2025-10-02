@@ -108,3 +108,11 @@ function editList(updatedList) {
   localStorage.setItem("lists", JSON.stringify(lists));
 }
   
+function doneList(list) {
+  list.completed = true;
+  let lists = JSON.parse(localStorage.getItem("lists")) || [];
+  lists = lists.map(t => t.id === list.id ? { ...t, completed: true } : t);
+  localStorage.setItem("lists", JSON.stringify(lists));
+  localStorage.setItem(`list-${list.id}-done`, "true");
+}
+

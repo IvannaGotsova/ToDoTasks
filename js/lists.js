@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(data => {
       const list = document.getElementById("lists-list");
 
-      data.forEach((item, index) => {
+      data.lists.forEach((item, index) => {
         const listContainer = document.createElement("div");
         listContainer.classList.add("list-item");
 

@@ -122,6 +122,14 @@ document.getElementById("AppBottomPartSelectedButtonList").addEventListener("cli
   loadLists();
 });
 
+document.getElementById("AppBottomPartAllButtonList").addEventListener("click", () => {
+  let lists = JSON.parse(localStorage.getItem("lists")) || [];
+  const checked = Array.from(document.querySelectorAll("#listList input[type=checkbox]:checked"))
+                       .map(cb => cb.value);
+  lists = lists.filter(list => !checked.includes(list.id));
+  localStorage.setItem("lists", JSON.stringify(lists));
+  loadLists();
+});
 
 const lists = JSON.parse(localStorage.getItem("lists")) || [];
 const listList = document.getElementById("listList");

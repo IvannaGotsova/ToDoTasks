@@ -35,6 +35,7 @@ function addListToList(list) {
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.value = list.id;
+  checkbox.id = list.id;
 
   const link = document.createElement("a");
   link.href = "#"; 
@@ -116,8 +117,6 @@ function doneList(list) {
   localStorage.setItem(`list-${list.id}-done`, "true");
 }
 
-
-
 const lists = JSON.parse(localStorage.getItem("lists")) || [];
 const listList = document.getElementById("listList");
 
@@ -132,28 +131,60 @@ function openList(listId) {
 
   const newTab = window.open("", "_blank");
 
-  let html = `
-    <html>
-      <head>
-        <title>List Details</title>
-        <style>
-          body { font-family: Arial, sans-serif; padding: 20px; background-color: rgb(33, 167, 167);
-    text-shadow: 1px 1px 5px;}
-          .completed { text-decoration: line-through; color: black; }
-        </style>
-      </head>
-      <body>
-        <h1>List Details</h1>
-        <p><strong>ID:</strong> ${list.id}</p>
-        <p><strong>Title:</strong> <span class="${list.completed ? 'completed' : ''}">
-          ${list.title}
-          <p><strong>Description:</strong> <span class="${list.completed ? 'completed' : ''}">
-          ${list.description}
-        </span></p>
-        <p><strong>Status:</strong> ${list.completed ? "Completed" : "Pending"}</p>
-      </body>
-    </html>
-  `;
+let html = `
+  <html>
+    <head>
+      <title>List Details</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          padding: 20px;
+          background-color: rgb(33, 167, 167);
+          text-shadow: 1px 1px 5px;
+        }
+        .completed {
+          text-decoration: line-through;
+          color: black;
+        }
+        .description-line {
+          margin: 5px 0;
+        }
+        button {
+          margin-left: 10px;
+        }
+      </style>
+      <script>
+        function lineDone(id) {
+          const line = document.getElementById(id);
+          line.classList.toggle('completed');
+        }
+      </script>
+    </head>
+    <body>
+      <h1>List Details</h1>
+      <p><strong>ID:</strong> ${list.id}</p>
+      <p><strong>Title:</strong> <span class="${list.completed ? 'completed' : ''}">${list.title}</span></p>
+      <p><strong>Description:</strong></p>
+      <div id="description-container">
+        ${
+          list.description && list.description.trim() !== ''
+            ? list.description.split(',').map((item, index) => {
+                const lineId = `desc-${index}`;
+                return `
+                  <div>
+                    <span id="${lineId}" class="description-line">${item.trim()}</span>
+                    <button onclick="lineDone('${lineId}')">Ready</button>
+                  </div>
+                `;
+              }).join('')
+            : `<p>This list is empty!</p>`
+        }
+      </div>
+      <p><strong>Status:</strong> ${list.completed ? "Completed" : "Pending"}</p>
+    </body>
+  </html>
+`;
+
 
   newTab.document.write(html);
   newTab.document.close();

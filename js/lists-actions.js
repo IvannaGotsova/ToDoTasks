@@ -117,6 +117,12 @@ function doneList(list) {
   localStorage.setItem(`list-${list.id}-done`, "true");
 }
 
+document.getElementById("AppBottomPartSelectedButtonList").addEventListener("click", () => {
+  localStorage.removeItem("lists");
+  loadLists();
+});
+
+
 const lists = JSON.parse(localStorage.getItem("lists")) || [];
 const listList = document.getElementById("listList");
 

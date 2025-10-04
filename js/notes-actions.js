@@ -95,3 +95,18 @@ function addNoteToList(note) {
   document.getElementById("noteList").appendChild(li);
 }
 
+function editNote(updatedNote) {
+  let notes = JSON.parse(localStorage.getItem("notes")) || [];
+  notes = notes.map(note => {
+    if (note.id === updatedNote.id) {
+      return {
+        ...note, 
+        title: updatedNote.title,
+        description: updatedNote.description
+      };
+    }
+    return note;
+  });
+  localStorage.setItem("notes", JSON.stringify(notes));
+}
+ 

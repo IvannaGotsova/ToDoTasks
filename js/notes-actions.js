@@ -118,3 +118,8 @@ function doneNote(note) {
   localStorage.setItem(`note-${note.id}-done`, "true");
 }
 
+document.getElementById("AppBottomPartSelectedButtonNote").addEventListener("click", () => {
+  localStorage.removeItem("notes");
+  loadNotes();
+});
+

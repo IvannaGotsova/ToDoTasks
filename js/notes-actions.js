@@ -123,3 +123,11 @@ document.getElementById("AppBottomPartSelectedButtonNote").addEventListener("cli
   loadNotes();
 });
 
+document.getElementById("AppBottomPartAllButtonNote").addEventListener("click", () => {
+  let notes = JSON.parse(localStorage.getItem("notes")) || [];
+  const checked = Array.from(document.querySelectorAll("#noteList input[type=checkbox]:checked"))
+                       .map(cb => cb.value);
+  notes = notes.filter(note => !checked.includes(note.id));
+  localStorage.setItem("notes", JSON.stringify(notes));
+  loadNotes();
+});

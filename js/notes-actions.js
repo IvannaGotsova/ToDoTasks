@@ -109,4 +109,12 @@ function editNote(updatedNote) {
   });
   localStorage.setItem("notes", JSON.stringify(notes));
 }
- 
+  
+function doneNote(note) {
+  note.completed = true;
+  let notes = JSON.parse(localStorage.getItem("notes")) || [];
+  notes = notes.map(t => t.id === note.id ? { ...t, completed: true } : t);
+  localStorage.setItem("notes", JSON.stringify(notes));
+  localStorage.setItem(`note-${note.id}-done`, "true");
+}
+

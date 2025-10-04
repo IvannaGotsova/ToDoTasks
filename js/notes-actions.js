@@ -28,3 +28,70 @@ function loadNotes() {
   notes.forEach(addNoteToList);
 }
 
+function addNoteToList(note) {
+  const li = document.createElement("li");
+  li.classList.add("note-item");
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.value = note.id;
+  checkbox.id = note.id;
+
+
+  const link = document.createElement("a");
+  link.href = "#"; 
+  link.textContent = note.title;
+  if (note.done) link.classList.add("done");
+  link.addEventListener("click", () => openNote(note.id));
+
+  const doneBtn = document.createElement("button");
+  doneBtn.textContent = "Done";
+  doneBtn.classList.add("note-item");
+
+  doneBtn.addEventListener("click", () => {
+  const newTitle = prompt("Done note:", note?.title);
+  if (newTitle) {
+    note.title = newTitle;
+    doneNote(note);
+    link.textContent = newTitle;
+    localStorage.setItem(`note-${note.id}-done`, "true");
+    disableLink(link, note.id);
+    checkbox.checked = !checkbox.checked;
+  }
+});
+    
+  const isDone = localStorage.getItem(`note-${note.id}-done`) === "true";
+    if (isDone) {
+      disableLink(link, note.id);
+    }
+  
+  function disableLink(link, noteId) {
+    link.style.pointerEvents = "none";
+    link.style.color = "gray";
+    link.style.cursor = "default";
+    link.removeAttribute("href");
+  }
+
+  const editBtn = document.createElement("button");
+  editBtn.textContent = "Edit";
+  editBtn.classList.add("note-item");
+
+  editBtn.addEventListener("click", function() {
+  const newTitle = prompt("Edit note title:", note.title);
+  const newDescription = prompt("Edit note description:", note.description);
+  if (newTitle) {
+    note.title = newTitle;
+    note.description = newDescription;
+    editNote(note);
+    link.textContent = newTitle;
+  }
+});
+
+  li.appendChild(checkbox);
+  li.appendChild(link);
+  li.appendChild(doneBtn);
+  li.appendChild(editBtn);
+
+  document.getElementById("noteList").appendChild(li);
+}
+

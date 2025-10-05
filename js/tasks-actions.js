@@ -28,3 +28,69 @@ function loadTasks() {
   tasks.forEach(addTaskToList);
 }
 
+function addTaskToList(task) {
+  const li = document.createElement("li");
+  li.classList.add("task-item");
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.value = task.id;
+  checkbox.id = task.id;
+
+  const link = document.createElement("a");
+  link.href = "#"; 
+  link.textContent = task.title;
+  if (task.done) link.classList.add("done");
+  link.addEventListener("click", () => openTask(task.id));
+
+  const doneBtn = document.createElement("button");
+  doneBtn.textContent = "Done";
+  doneBtn.classList.add("task-item");
+
+  doneBtn.addEventListener("click", () => {
+  const newTitle = prompt("Done task:", task?.title);
+  if (newTitle) {
+    task.title = newTitle;
+    doneTask(task);
+    link.textContent = newTitle;
+    localStorage.setItem(`task-${task.id}-done`, "true");
+    disableLink(link, task.id);
+    checkbox.checked = !checkbox.checked;
+  }
+});
+    
+  const isDone = localStorage.getItem(`task-${task.id}-done`) === "true";
+    if (isDone) {
+      disableLink(link, task.id);
+    }
+  
+  function disableLink(link, taskId) {
+    link.style.pointerEvents = "none";
+    link.style.color = "gray";
+    link.style.cursor = "default";
+    link.removeAttribute("href");
+  }
+
+  const editBtn = document.createElement("button");
+  editBtn.textContent = "Edit";
+  editBtn.classList.add("task-item");
+
+  editBtn.addEventListener("click", function() {
+  const newTitle = prompt("Edit task title:", task.title);
+  const newDescription = prompt("Edit task description:", task.description);
+  if (newTitle) {
+    task.title = newTitle;
+    task.description = newDescription;
+    editTask(task);
+    link.textContent = newTitle;
+  }
+});
+
+  li.appendChild(checkbox);
+  li.appendChild(link);
+  li.appendChild(doneBtn);
+  li.appendChild(editBtn);
+
+  document.getElementById("taskList").appendChild(li);
+}
+

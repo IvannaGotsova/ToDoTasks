@@ -122,3 +122,12 @@ document.getElementById("AppMiddlePartSelectedButton").addEventListener("click",
   localStorage.removeItem("tasks");
   loadTasks();
 });
+
+document.getElementById("AppMiddlePartAllButton").addEventListener("click", () => {
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  const checked = Array.from(document.querySelectorAll("#taskList input[type=checkbox]:checked"))
+                       .map(cb => cb.value);
+  tasks = tasks.filter(task => !checked.includes(task.id));
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  loadTasks();
+});

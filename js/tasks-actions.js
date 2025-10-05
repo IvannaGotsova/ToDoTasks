@@ -117,3 +117,8 @@ function doneTask(task) {
   localStorage.setItem("tasks", JSON.stringify(tasks));
   localStorage.setItem(`task-${task.id}-done`, "true");
 }
+
+document.getElementById("AppMiddlePartSelectedButton").addEventListener("click", () => {
+  localStorage.removeItem("tasks");
+  loadTasks();
+});

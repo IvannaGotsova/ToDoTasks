@@ -108,3 +108,12 @@ function editTask(updatedTask) {
   });
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+
+  
+function doneTask(task) {
+  task.completed = true;
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  tasks = tasks.map(t => t.id === task.id ? { ...t, completed: true } : t);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem(`task-${task.id}-done`, "true");
+}

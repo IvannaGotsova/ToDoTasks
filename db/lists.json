@@ -1,4 +1,5 @@
-[
+{
+    "lists": [
     {
       "id": "1",
       "title": "First",
@@ -50,3 +51,5 @@
         "description": ["one", "two", "three"]
     }
 ]
+
+}

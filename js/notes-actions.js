@@ -131,3 +131,48 @@ document.getElementById("AppBottomPartAllButtonNote").addEventListener("click", 
   localStorage.setItem("notes", JSON.stringify(notes));
   loadNotes();
 });
+
+const notes = JSON.parse(localStorage.getItem("notes")) || [];
+const noteList = document.getElementById("noteList");
+
+function openNote(noteId) {
+  const notes = JSON.parse(localStorage.getItem("notes")) || [];
+  const note = notes.find(t => t.id === noteId);
+
+  if (!note) {
+    alert("Note not found!");
+    return;
+  }
+
+  const newTab = window.open("", "_blank");
+
+  let html = `
+    <html>
+      <head>
+        <title>Note Details</title>
+        <style>
+          body { font-family: Arial, sans-serif; padding: 20px; background-color: rgb(33, 167, 167);
+    text-shadow: 1px 1px 5px;}
+          .completed { text-decoration: line-through; color: black; }
+        </style>
+      </head>
+      <body>
+        <h1>Note Details</h1>
+        <p><strong>ID:</strong> ${note.id}</p>
+        <p><strong>Title:</strong> <span class="${note.completed ? 'completed' : ''}">
+          ${note.title}
+          <p><strong>Description:</strong> <span class="${note.completed ? 'completed' : ''}">
+          ${note.description}
+        </span></p>
+        <p><strong>Status:</strong> ${note.completed ? "Completed" : "Pending"}</p>
+      </body>
+    </html>
+  `;
+
+  newTab.document.write(html);
+  newTab.document.close();
+}
+
+
+
+

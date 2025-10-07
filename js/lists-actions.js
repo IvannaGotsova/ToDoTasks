@@ -48,20 +48,31 @@ function addListToList(list) {
   doneBtn.classList.add("list-item");
 
   doneBtn.addEventListener("click", () => {
-  const newTitle = prompt("Done list:", list?.title);
-  if (newTitle) {
-    list.title = newTitle;
-    doneList(list);
-    link.textContent = newTitle;
-    localStorage.setItem(`list-${list.id}-done`, "true");
-    disableLink(link, list.id);
-    checkbox.checked = !checkbox.checked;
+  if (isDone) {
+    undoneList(list)
+    enableLink(link, list.id);
+    localStorage.setItem(`list-${list.id}-done`, "false");
+    doneBtn.textContent = "Done";
+    checkbox.checked = false;
+  } else {
+    const newTitle = prompt("Done list:", list?.title);
+    if (newTitle) {
+      list.title = newTitle;
+      doneList(list);
+      link.textContent = newTitle;
+      localStorage.setItem(`list-${list.id}-done`, "true");
+      disableLink(link, list.id);
+      doneBtn.textContent = "Undone";
+      checkbox.checked = false;
+    }
   }
+  isDone = !isDone; 
 });
     
-  const isDone = localStorage.getItem(`list-${list.id}-done`) === "true";
+  let isDone = localStorage.getItem(`list-${list.id}-done`) === "true";
     if (isDone) {
       disableLink(link, list.id);
+      doneBtn.textContent = "Undone";
     }
   
   function disableLink(link, listId) {
@@ -70,6 +81,13 @@ function addListToList(list) {
     link.style.cursor = "default";
     link.removeAttribute("href");
   }
+
+  function enableLink(link, listId) {
+  link.style.pointerEvents = "auto";
+  link.style.color = ""; 
+  link.style.cursor = "pointer";
+  link.setAttribute("href", `/list/${listId}`);
+}
 
   const editBtn = document.createElement("button");
   editBtn.textContent = "Edit";
@@ -117,12 +135,20 @@ function doneList(list) {
   localStorage.setItem(`list-${list.id}-done`, "true");
 }
 
-document.getElementById("AppBottomPartSelectedButtonList").addEventListener("click", () => {
+function undoneList(list) {
+  let lists = JSON.parse(localStorage.getItem("lists")) || [];
+  lists = lists.map(l => l.id === list.id ? { ...l, completed: false } : l);
+  localStorage.setItem("lists", JSON.stringify(lists));
+  localStorage.setItem(`list-${list.id}-done`, "false");
+}
+
+
+document.getElementById("AppBottomPartAllButtonList").addEventListener("click", () => {
   localStorage.removeItem("lists");
   loadLists();
 });
 
-document.getElementById("AppBottomPartAllButtonList").addEventListener("click", () => {
+document.getElementById("AppBottomPartSelectedButtonList").addEventListener("click", () => {
   let lists = JSON.parse(localStorage.getItem("lists")) || [];
   const checked = Array.from(document.querySelectorAll("#listList input[type=checkbox]:checked"))
                        .map(cb => cb.value);

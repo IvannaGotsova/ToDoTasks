@@ -11,7 +11,7 @@ body {
 .task-item, .list-item, .note-item, .btn-done, .btn-edit, #AppMiddlePartAllButton, #AppMiddlePartSelectedButton, #AppTopPartButton,
 #AppBottomPartButtonList, #AppBottomPartAllButtonList, #AppBottomPartSelectedButtonList, #AppBottomPartButtonAllLists,
 #AppBottomPartButtonNote, #AppBottomPartAllButtonNote, #AppBottomPartSelectedButtonNote, #AppBottomPartButtonAllNotes,
-#AppMiddlePartAllTasksButton {
+#AppMiddlePartAllTasksButton, #about-us, #contacts {
     background-color: lightblue;
     border-radius: 50pt;
     border-color: 5px solid black;

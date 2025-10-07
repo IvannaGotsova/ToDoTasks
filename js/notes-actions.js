@@ -49,20 +49,31 @@ function addNoteToList(note) {
   doneBtn.classList.add("note-item");
 
   doneBtn.addEventListener("click", () => {
-  const newTitle = prompt("Done note:", note?.title);
-  if (newTitle) {
-    note.title = newTitle;
-    doneNote(note);
-    link.textContent = newTitle;
-    localStorage.setItem(`note-${note.id}-done`, "true");
-    disableLink(link, note.id);
-    checkbox.checked = !checkbox.checked;
+  if (isDone) {
+    undoneNote(note)
+    enableLink(link, note.id);
+    localStorage.setItem(`note-${note.id}-done`, "false");
+    doneBtn.textContent = "Done";
+    checkbox.checked = false;
+  } else {
+    const newTitle = prompt("Done note:", note?.title);
+    if (newTitle) {
+      note.title = newTitle;
+      doneNote(note);
+      link.textContent = newTitle;
+      localStorage.setItem(`note-${note.id}-done`, "true");
+      disableLink(link, note.id);
+      doneBtn.textContent = "Undone";
+      checkbox.checked = false;
+    }
   }
+  isDone = !isDone; 
 });
     
-  const isDone = localStorage.getItem(`note-${note.id}-done`) === "true";
+  let isDone = localStorage.getItem(`note-${note.id}-done`) === "true";
     if (isDone) {
       disableLink(link, note.id);
+      doneBtn.textContent = "Undone";
     }
   
   function disableLink(link, noteId) {
@@ -72,6 +83,12 @@ function addNoteToList(note) {
     link.removeAttribute("href");
   }
 
+  function enableLink(link, noteId) {
+  link.style.pointerEvents = "auto";
+  link.style.color = ""; 
+  link.style.cursor = "pointer";
+  link.setAttribute("href", `/note/${noteId}`);
+}
   const editBtn = document.createElement("button");
   editBtn.textContent = "Edit";
   editBtn.classList.add("note-item");
@@ -118,12 +135,19 @@ function doneNote(note) {
   localStorage.setItem(`note-${note.id}-done`, "true");
 }
 
-document.getElementById("AppBottomPartSelectedButtonNote").addEventListener("click", () => {
+function undoneNote(note) {
+  let notes = JSON.parse(localStorage.getItem("notes")) || [];
+  notes = notes.map(n => n.id === note.id ? { ...n, completed: false } : n);
+  localStorage.setItem("notes", JSON.stringify(notes));
+  localStorage.setItem(`note-${note.id}-done`, "false");
+}
+
+document.getElementById("AppBottomPartAllButtonNote").addEventListener("click", () => {
   localStorage.removeItem("notes");
   loadNotes();
 });
 
-document.getElementById("AppBottomPartAllButtonNote").addEventListener("click", () => {
+document.getElementById("AppBottomPartSelectedButtonNote").addEventListener("click", () => {
   let notes = JSON.parse(localStorage.getItem("notes")) || [];
   const checked = Array.from(document.querySelectorAll("#noteList input[type=checkbox]:checked"))
                        .map(cb => cb.value);

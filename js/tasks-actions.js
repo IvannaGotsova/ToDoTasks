@@ -48,20 +48,31 @@ function addTaskToList(task) {
   doneBtn.classList.add("task-item");
 
   doneBtn.addEventListener("click", () => {
-  const newTitle = prompt("Done task:", task?.title);
-  if (newTitle) {
-    task.title = newTitle;
-    doneTask(task);
-    link.textContent = newTitle;
-    localStorage.setItem(`task-${task.id}-done`, "true");
-    disableLink(link, task.id);
-    checkbox.checked = !checkbox.checked;
+  if (isDone) {
+    undoneTask(task);
+    enableLink(link, task.id);
+    localStorage.setItem(`task-${task.id}-done`, "false");
+    doneBtn.textContent = "Done";
+    checkbox.checked = false;
+  } else {
+    const newTitle = prompt("Done task:", task?.title);
+    if (newTitle) {
+      task.title = newTitle;
+      doneTask(task);
+      link.textContent = newTitle;
+      localStorage.setItem(`task-${task.id}-done`, "true");
+      disableLink(link, task.id);
+      doneBtn.textContent = "Undone";
+      checkbox.checked = false;
+    }
   }
+  isDone = !isDone; 
 });
     
-  const isDone = localStorage.getItem(`task-${task.id}-done`) === "true";
+  let isDone = localStorage.getItem(`task-${task.id}-done`) === "true";
     if (isDone) {
       disableLink(link, task.id);
+      doneBtn.textContent = "Undone";
     }
   
   function disableLink(link, taskId) {
@@ -70,6 +81,13 @@ function addTaskToList(task) {
     link.style.cursor = "default";
     link.removeAttribute("href");
   }
+
+  function enableLink(link, taskId) {
+  link.style.pointerEvents = "auto";
+  link.style.color = ""; 
+  link.style.cursor = "pointer";
+  link.setAttribute("href", `/task/${taskId}`);
+}
 
   const editBtn = document.createElement("button");
   editBtn.textContent = "Edit";
@@ -111,19 +129,26 @@ function editTask(updatedTask) {
 
   
 function doneTask(task) {
-  task.completed = true;
   let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
   tasks = tasks.map(t => t.id === task.id ? { ...t, completed: true } : t);
   localStorage.setItem("tasks", JSON.stringify(tasks));
   localStorage.setItem(`task-${task.id}-done`, "true");
 }
 
-document.getElementById("AppMiddlePartSelectedButton").addEventListener("click", () => {
+function undoneTask(task) {
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  tasks = tasks.map(t => t.id === task.id ? { ...t, completed: false } : t);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem(`task-${task.id}-done`, "false");
+}
+
+
+document.getElementById("AppMiddlePartAllButton").addEventListener("click", () => {
   localStorage.removeItem("tasks");
   loadTasks();
 });
 
-document.getElementById("AppMiddlePartAllButton").addEventListener("click", () => {
+document.getElementById("AppMiddlePartSelectedButton").addEventListener("click", () => {
   let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
   const checked = Array.from(document.querySelectorAll("#taskList input[type=checkbox]:checked"))
                        .map(cb => cb.value);

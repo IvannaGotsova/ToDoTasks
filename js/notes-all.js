@@ -1,9 +1,11 @@
-document.getElementById("AppBottomPartButtonAllNotes").addEventListener("click", function () {
-  const notes = JSON.parse(localStorage.getItem("notes")) || [];
+document
+  .getElementById("AppBottomPartButtonAllNotes")
+  .addEventListener("click", function () {
+    const notes = JSON.parse(localStorage.getItem("notes")) || [];
 
-  const newTab = window.open("", "_blank");
+    const newTab = window.open("", "_blank");
 
-  let html = `
+    let html = `
     <html>
       <head>
         <title>All Notes</title>
@@ -16,17 +18,21 @@ document.getElementById("AppBottomPartButtonAllNotes").addEventListener("click",
       <body>
         <h1>All Notes</h1>
         <ul>
-          ${notes.map(note => `
-            <li class="${note.completed ? 'completed' : ''}">
+          ${notes
+            .map(
+              (note) => `
+            <li class="${note.completed ? "completed" : ""}">
               Title: ${note.title} -
               Description: ${note.description}
             </li>
-          `).join("")}
+          `
+            )
+            .join("")}
         </ul>
       </body>
     </html>
   `;
 
-  newTab.document.write(html);
-  newTab.document.close();
-});
+    newTab.document.write(html);
+    newTab.document.close();
+  });

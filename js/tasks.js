@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   fetch(`../db/tasks.json?ts=${Date.now()}`, { cache: "reload" })
-
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       const list = document.getElementById("tasks-list");
 
       data.tasks.forEach((item, index) => {
@@ -15,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const a = document.createElement("a");
         a.textContent = item.title;
-        a.href = item.href || "#"; 
+        a.href = item.href || "#";
         a.target = "_blank";
         a.style.marginLeft = "8px";
 
@@ -39,5 +38,5 @@ document.addEventListener("DOMContentLoaded", () => {
         list.appendChild(taskContainer);
       });
     })
-    .catch(error => console.error("Error loading JSON:", error));
+    .catch((error) => console.error("Error loading JSON:", error));
 });

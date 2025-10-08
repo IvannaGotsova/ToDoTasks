@@ -1,9 +1,11 @@
-document.getElementById("AppBottomPartButtonAllLists").addEventListener("click", function () {
-  const lists = JSON.parse(localStorage.getItem("lists")) || [];
+document
+  .getElementById("AppBottomPartButtonAllLists")
+  .addEventListener("click", function () {
+    const lists = JSON.parse(localStorage.getItem("lists")) || [];
 
-  const newTab = window.open("", "_blank");
+    const newTab = window.open("", "_blank");
 
-  let html = `
+    let html = `
     <html>
       <head>
         <title>All Lists</title>
@@ -16,18 +18,22 @@ document.getElementById("AppBottomPartButtonAllLists").addEventListener("click",
       <body>
         <h1>All Lists</h1>
         <ul>
-          ${lists.map(list => `
-            <li class="${list.completed ? 'completed' : ''}">
+          ${lists
+            .map(
+              (list) => `
+            <li class="${list.completed ? "completed" : ""}">
               Title: ${list.title} -
               <strong>Description:</strong>
                ${list.description}
             </li>
-          `).join("")}
+          `
+            )
+            .join("")}
         </ul>
       </body>
     </html>
   `;
 
-  newTab.document.write(html);
-  newTab.document.close();
-});
+    newTab.document.write(html);
+    newTab.document.close();
+  });

@@ -1,19 +1,36 @@
 body {
-    background-color: rgb(33, 167, 167);
-    text-shadow: 1px 1px 5px;
+  background-color: rgb(33, 167, 167);
+  text-shadow: 1px 1px 5px;
 }
 
-.AppTopPart, .AppMiddlePart, .AppBottomPart {
-    background-color: rgb(74, 214, 214);
-    text-shadow: 1px 1px 5px;
+.AppTopPart,
+.AppMiddlePart,
+.AppBottomPart {
+  background-color: rgb(74, 214, 214);
+  text-shadow: 1px 1px 5px;
 }
 
-.task-item, .list-item, .note-item, .btn-done, .btn-edit, #AppMiddlePartAllButton, #AppMiddlePartSelectedButton, #AppTopPartButton,
-#AppBottomPartButtonList, #AppBottomPartAllButtonList, #AppBottomPartSelectedButtonList, #AppBottomPartButtonAllLists,
-#AppBottomPartButtonNote, #AppBottomPartAllButtonNote, #AppBottomPartSelectedButtonNote, #AppBottomPartButtonAllNotes,
-#AppMiddlePartAllTasksButton, #about-us, #contacts {
-    background-color: lightblue;
-    border-radius: 50pt;
-    border-color: 5px solid black;
-    text-shadow: 1px 1px 5px;
+.task-item,
+.list-item,
+.note-item,
+.btn-done,
+.btn-edit,
+#AppMiddlePartAllButton,
+#AppMiddlePartSelectedButton,
+#AppTopPartButton,
+#AppBottomPartButtonList,
+#AppBottomPartAllButtonList,
+#AppBottomPartSelectedButtonList,
+#AppBottomPartButtonAllLists,
+#AppBottomPartButtonNote,
+#AppBottomPartAllButtonNote,
+#AppBottomPartSelectedButtonNote,
+#AppBottomPartButtonAllNotes,
+#AppMiddlePartAllTasksButton,
+#about-us,
+#contacts {
+  background-color: lightblue;
+  border-radius: 50pt;
+  border-color: 5px solid black;
+  text-shadow: 1px 1px 5px;
 }

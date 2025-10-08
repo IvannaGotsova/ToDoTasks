@@ -1,10 +1,5 @@
 {
-       "liveServer.settings.CustomBrowser": "chrome",
-"liveServer.settings.ignoreFiles": [
-  ".vscode/**",
-  "**/*.scss",
-  "**/*.sass"
-],
-"liveServer.settings.fullReload": true
-
+  "liveServer.settings.CustomBrowser": "chrome",
+  "liveServer.settings.ignoreFiles": [".vscode/**", "**/*.scss", "**/*.sass"],
+  "liveServer.settings.fullReload": true
 }

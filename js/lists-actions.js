@@ -1,28 +1,27 @@
+document.addEventListener("DOMContentLoaded", loadLists);
 
-  document.addEventListener("DOMContentLoaded", loadLists);
-  
-  document.getElementById("AppBottomPartButtonList").addEventListener("click", function() {
+document
+  .getElementById("AppBottomPartButtonList")
+  .addEventListener("click", function () {
+    const listInput = document.getElementById("AppBottomPartInputList");
+    const listTitle = listInput.value.trim();
 
-  const listInput = document.getElementById("AppBottomPartInputList");
-  const listTitle = listInput.value.trim();
-  
-  if (listTitle === "") return;
-  
-  const newList = {
-    id: Date.now().toString(),
-    title: listTitle, 
-    description: "",
-  };
+    if (listTitle === "") return;
 
-  let lists = JSON.parse(localStorage.getItem("lists")) || [];
-  lists.push(newList);
-  localStorage.setItem("lists", JSON.stringify(lists));
-  addListToList(newList);
-  listInput.value = "";
-});
+    const newList = {
+      id: Date.now().toString(),
+      title: listTitle,
+      description: "",
+    };
+
+    let lists = JSON.parse(localStorage.getItem("lists")) || [];
+    lists.push(newList);
+    localStorage.setItem("lists", JSON.stringify(lists));
+    addListToList(newList);
+    listInput.value = "";
+  });
 
 function loadLists() {
-
   let lists = JSON.parse(localStorage.getItem("lists")) || [];
   document.getElementById("listList").innerHTML = "";
   lists.forEach(addListToList);
@@ -38,7 +37,7 @@ function addListToList(list) {
   checkbox.id = list.id;
 
   const link = document.createElement("a");
-  link.href = "#"; 
+  link.href = "#";
   link.textContent = list.title;
   if (list.done) link.classList.add("done");
   link.addEventListener("click", () => openList(list.id));
@@ -48,33 +47,33 @@ function addListToList(list) {
   doneBtn.classList.add("list-item");
 
   doneBtn.addEventListener("click", () => {
-  if (isDone) {
-    undoneList(list)
-    enableLink(link, list.id);
-    localStorage.setItem(`list-${list.id}-done`, "false");
-    doneBtn.textContent = "Done";
-    checkbox.checked = false;
-  } else {
-    const newTitle = prompt("Done list:", list?.title);
-    if (newTitle) {
-      list.title = newTitle;
-      doneList(list);
-      link.textContent = newTitle;
-      localStorage.setItem(`list-${list.id}-done`, "true");
-      disableLink(link, list.id);
-      doneBtn.textContent = "Undone";
-      checkbox.checked = false;
-    }
-  }
-  isDone = !isDone; 
-});
-    
-  let isDone = localStorage.getItem(`list-${list.id}-done`) === "true";
     if (isDone) {
-      disableLink(link, list.id);
-      doneBtn.textContent = "Undone";
+      undoneList(list);
+      enableLink(link, list.id);
+      localStorage.setItem(`list-${list.id}-done`, "false");
+      doneBtn.textContent = "Done";
+      checkbox.checked = false;
+    } else {
+      const newTitle = prompt("Done list:", list?.title);
+      if (newTitle) {
+        list.title = newTitle;
+        doneList(list);
+        link.textContent = newTitle;
+        localStorage.setItem(`list-${list.id}-done`, "true");
+        disableLink(link, list.id);
+        doneBtn.textContent = "Undone";
+        checkbox.checked = false;
+      }
     }
-  
+    isDone = !isDone;
+  });
+
+  let isDone = localStorage.getItem(`list-${list.id}-done`) === "true";
+  if (isDone) {
+    disableLink(link, list.id);
+    doneBtn.textContent = "Undone";
+  }
+
   function disableLink(link, listId) {
     link.style.pointerEvents = "none";
     link.style.color = "gray";
@@ -83,26 +82,26 @@ function addListToList(list) {
   }
 
   function enableLink(link, listId) {
-  link.style.pointerEvents = "auto";
-  link.style.color = ""; 
-  link.style.cursor = "pointer";
-  link.setAttribute("href", `/list/${listId}`);
-}
+    link.style.pointerEvents = "auto";
+    link.style.color = "";
+    link.style.cursor = "pointer";
+    link.setAttribute("href", `/list/${listId}`);
+  }
 
   const editBtn = document.createElement("button");
   editBtn.textContent = "Edit";
   editBtn.classList.add("list-item");
 
-  editBtn.addEventListener("click", function() {
-  const newTitle = prompt("Edit list title:", list.title);
-  const newDescription = prompt("Edit list description:", list.description);
-  if (newTitle) {
-    list.title = newTitle;
-    list.description = newDescription;
-    editList(list);
-    link.textContent = newTitle;
-  }
-});
+  editBtn.addEventListener("click", function () {
+    const newTitle = prompt("Edit list title:", list.title);
+    const newDescription = prompt("Add your list items, separated by ,", list.description);
+    if (newTitle) {
+      list.title = newTitle;
+      list.description = newDescription;
+      editList(list);
+      link.textContent = newTitle;
+    }
+  });
 
   li.appendChild(checkbox);
   li.appendChild(link);
@@ -114,55 +113,59 @@ function addListToList(list) {
 
 function editList(updatedList) {
   let lists = JSON.parse(localStorage.getItem("lists")) || [];
-  lists = lists.map(list => {
+  lists = lists.map((list) => {
     if (list.id === updatedList.id) {
       return {
-        ...list, 
+        ...list,
         title: updatedList.title,
-        description: updatedList.description
+        description: updatedList.description,
       };
     }
     return list;
   });
   localStorage.setItem("lists", JSON.stringify(lists));
 }
-  
+
 function doneList(list) {
   list.completed = true;
   let lists = JSON.parse(localStorage.getItem("lists")) || [];
-  lists = lists.map(t => t.id === list.id ? { ...t, completed: true } : t);
+  lists = lists.map((t) => (t.id === list.id ? { ...t, completed: true } : t));
   localStorage.setItem("lists", JSON.stringify(lists));
   localStorage.setItem(`list-${list.id}-done`, "true");
 }
 
 function undoneList(list) {
   let lists = JSON.parse(localStorage.getItem("lists")) || [];
-  lists = lists.map(l => l.id === list.id ? { ...l, completed: false } : l);
+  lists = lists.map((l) => (l.id === list.id ? { ...l, completed: false } : l));
   localStorage.setItem("lists", JSON.stringify(lists));
   localStorage.setItem(`list-${list.id}-done`, "false");
 }
 
+document
+  .getElementById("AppBottomPartAllButtonList")
+  .addEventListener("click", () => {
+    localStorage.removeItem("lists");
+    loadLists();
+  });
 
-document.getElementById("AppBottomPartAllButtonList").addEventListener("click", () => {
-  localStorage.removeItem("lists");
-  loadLists();
-});
-
-document.getElementById("AppBottomPartSelectedButtonList").addEventListener("click", () => {
-  let lists = JSON.parse(localStorage.getItem("lists")) || [];
-  const checked = Array.from(document.querySelectorAll("#listList input[type=checkbox]:checked"))
-                       .map(cb => cb.value);
-  lists = lists.filter(list => !checked.includes(list.id));
-  localStorage.setItem("lists", JSON.stringify(lists));
-  loadLists();
-});
+document
+  .getElementById("AppBottomPartSelectedButtonList")
+  .addEventListener("click", () => {
+    let lists = JSON.parse(localStorage.getItem("lists")) || [];
+    const checked = Array.from(
+      document.querySelectorAll("#listList input[type=checkbox]:checked")
+    ).map((cb) => cb.value);
+    lists = lists.filter((list) => !checked.includes(list.id));
+    localStorage.setItem("lists", JSON.stringify(lists));
+    loadLists();
+  });
 
 const lists = JSON.parse(localStorage.getItem("lists")) || [];
 const listList = document.getElementById("listList");
 
 function openList(listId) {
   const lists = JSON.parse(localStorage.getItem("lists")) || [];
-  const list = lists.find(t => t.id === listId);
+  const list = lists.find((t) => t.id === listId);
 
   if (!list) {
     alert("list not found!");
@@ -171,7 +174,7 @@ function openList(listId) {
 
   const newTab = window.open("", "_blank");
 
-let html = `
+  let html = `
   <html>
     <head>
       <title>List Details</title>
@@ -203,33 +206,35 @@ let html = `
     <body>
       <h1>List Details</h1>
       <p><strong>ID:</strong> ${list.id}</p>
-      <p><strong>Title:</strong> <span class="${list.completed ? 'completed' : ''}">${list.title}</span></p>
+      <p><strong>Title:</strong> <span class="${
+        list.completed ? "completed" : ""
+      }">${list.title}</span></p>
       <p><strong>Description:</strong></p>
       <div id="description-container">
         ${
-          list.description && list.description.trim() !== ''
-            ? list.description.split(',').map((item, index) => {
-                const lineId = `desc-${index}`;
-                return `
+          list.description && list.description.trim() !== ""
+            ? list.description
+                .split(",")
+                .map((item, index) => {
+                  const lineId = `desc-${index}`;
+                  return `
                   <div>
                     <span id="${lineId}" class="description-line">${item.trim()}</span>
                     <button onclick="lineDone('${lineId}')">Ready</button>
                   </div>
                 `;
-              }).join('')
+                })
+                .join("")
             : `<p>This list is empty!</p>`
         }
       </div>
-      <p><strong>Status:</strong> ${list.completed ? "Completed" : "Pending"}</p>
+      <p><strong>Status:</strong> ${
+        list.completed ? "Completed" : "Pending"
+      }</p>
     </body>
   </html>
 `;
 
-
   newTab.document.write(html);
   newTab.document.close();
 }
-
-
-
-

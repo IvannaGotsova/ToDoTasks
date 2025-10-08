@@ -1,28 +1,27 @@
+document.addEventListener("DOMContentLoaded", loadTasks);
 
-  document.addEventListener("DOMContentLoaded", loadTasks);
-  
-  document.getElementById("AppTopPartButton").addEventListener("click", function() {
+document
+  .getElementById("AppTopPartButton")
+  .addEventListener("click", function () {
+    const taskInput = document.getElementById("AppTopPartInput");
+    const taskTitle = taskInput.value.trim();
 
-  const taskInput = document.getElementById("AppTopPartInput");
-  const taskTitle = taskInput.value.trim();
-  
-  if (taskTitle === "") return;
-  
-  const newTask = {
-    id: Date.now().toString(),
-    title: taskTitle, 
-    description: "",
-  };
+    if (taskTitle === "") return;
 
-  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  tasks.push(newTask);
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-  addTaskToList(newTask);
-  taskInput.value = "";
-});
+    const newTask = {
+      id: Date.now().toString(),
+      title: taskTitle,
+      description: "",
+    };
+
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.push(newTask);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    addTaskToList(newTask);
+    taskInput.value = "";
+  });
 
 function loadTasks() {
-
   let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
   document.getElementById("taskList").innerHTML = "";
   tasks.forEach(addTaskToList);
@@ -38,7 +37,7 @@ function addTaskToList(task) {
   checkbox.id = task.id;
 
   const link = document.createElement("a");
-  link.href = "#"; 
+  link.href = "#";
   link.textContent = task.title;
   if (task.done) link.classList.add("done");
   link.addEventListener("click", () => openTask(task.id));
@@ -48,33 +47,33 @@ function addTaskToList(task) {
   doneBtn.classList.add("task-item");
 
   doneBtn.addEventListener("click", () => {
-  if (isDone) {
-    undoneTask(task);
-    enableLink(link, task.id);
-    localStorage.setItem(`task-${task.id}-done`, "false");
-    doneBtn.textContent = "Done";
-    checkbox.checked = false;
-  } else {
-    const newTitle = prompt("Done task:", task?.title);
-    if (newTitle) {
-      task.title = newTitle;
-      doneTask(task);
-      link.textContent = newTitle;
-      localStorage.setItem(`task-${task.id}-done`, "true");
-      disableLink(link, task.id);
-      doneBtn.textContent = "Undone";
-      checkbox.checked = false;
-    }
-  }
-  isDone = !isDone; 
-});
-    
-  let isDone = localStorage.getItem(`task-${task.id}-done`) === "true";
     if (isDone) {
-      disableLink(link, task.id);
-      doneBtn.textContent = "Undone";
+      undoneTask(task);
+      enableLink(link, task.id);
+      localStorage.setItem(`task-${task.id}-done`, "false");
+      doneBtn.textContent = "Done";
+      checkbox.checked = false;
+    } else {
+      const newTitle = prompt("Done task:", task?.title);
+      if (newTitle) {
+        task.title = newTitle;
+        doneTask(task);
+        link.textContent = newTitle;
+        localStorage.setItem(`task-${task.id}-done`, "true");
+        disableLink(link, task.id);
+        doneBtn.textContent = "Undone";
+        checkbox.checked = false;
+      }
     }
-  
+    isDone = !isDone;
+  });
+
+  let isDone = localStorage.getItem(`task-${task.id}-done`) === "true";
+  if (isDone) {
+    disableLink(link, task.id);
+    doneBtn.textContent = "Undone";
+  }
+
   function disableLink(link, taskId) {
     link.style.pointerEvents = "none";
     link.style.color = "gray";
@@ -83,26 +82,26 @@ function addTaskToList(task) {
   }
 
   function enableLink(link, taskId) {
-  link.style.pointerEvents = "auto";
-  link.style.color = ""; 
-  link.style.cursor = "pointer";
-  link.setAttribute("href", `/task/${taskId}`);
-}
+    link.style.pointerEvents = "auto";
+    link.style.color = "";
+    link.style.cursor = "pointer";
+    link.setAttribute("href", `/task/${taskId}`);
+  }
 
   const editBtn = document.createElement("button");
   editBtn.textContent = "Edit";
   editBtn.classList.add("task-item");
 
-  editBtn.addEventListener("click", function() {
-  const newTitle = prompt("Edit task title:", task.title);
-  const newDescription = prompt("Edit task description:", task.description);
-  if (newTitle) {
-    task.title = newTitle;
-    task.description = newDescription;
-    editTask(task);
-    link.textContent = newTitle;
-  }
-});
+  editBtn.addEventListener("click", function () {
+    const newTitle = prompt("Edit task title:", task.title);
+    const newDescription = prompt("Add task description:", task.description);
+    if (newTitle) {
+      task.title = newTitle;
+      task.description = newDescription;
+      editTask(task);
+      link.textContent = newTitle;
+    }
+  });
 
   li.appendChild(checkbox);
   li.appendChild(link);
@@ -114,12 +113,12 @@ function addTaskToList(task) {
 
 function editTask(updatedTask) {
   let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  tasks = tasks.map(task => {
+  tasks = tasks.map((task) => {
     if (task.id === updatedTask.id) {
       return {
-        ...task, 
+        ...task,
         title: updatedTask.title,
-        description: updatedTask.description
+        description: updatedTask.description,
       };
     }
     return task;
@@ -127,42 +126,45 @@ function editTask(updatedTask) {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-  
 function doneTask(task) {
   let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  tasks = tasks.map(t => t.id === task.id ? { ...t, completed: true } : t);
+  tasks = tasks.map((t) => (t.id === task.id ? { ...t, completed: true } : t));
   localStorage.setItem("tasks", JSON.stringify(tasks));
   localStorage.setItem(`task-${task.id}-done`, "true");
 }
 
 function undoneTask(task) {
   let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  tasks = tasks.map(t => t.id === task.id ? { ...t, completed: false } : t);
+  tasks = tasks.map((t) => (t.id === task.id ? { ...t, completed: false } : t));
   localStorage.setItem("tasks", JSON.stringify(tasks));
   localStorage.setItem(`task-${task.id}-done`, "false");
 }
 
+document
+  .getElementById("AppMiddlePartAllButton")
+  .addEventListener("click", () => {
+    localStorage.removeItem("tasks");
+    loadTasks();
+  });
 
-document.getElementById("AppMiddlePartAllButton").addEventListener("click", () => {
-  localStorage.removeItem("tasks");
-  loadTasks();
-});
-
-document.getElementById("AppMiddlePartSelectedButton").addEventListener("click", () => {
-  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  const checked = Array.from(document.querySelectorAll("#taskList input[type=checkbox]:checked"))
-                       .map(cb => cb.value);
-  tasks = tasks.filter(task => !checked.includes(task.id));
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-  loadTasks();
-});
+document
+  .getElementById("AppMiddlePartSelectedButton")
+  .addEventListener("click", () => {
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const checked = Array.from(
+      document.querySelectorAll("#taskList input[type=checkbox]:checked")
+    ).map((cb) => cb.value);
+    tasks = tasks.filter((task) => !checked.includes(task.id));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    loadTasks();
+  });
 
 const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 const taskList = document.getElementById("taskList");
 
 function openTask(taskId) {
   const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  const task = tasks.find(t => t.id === taskId);
+  const task = tasks.find((t) => t.id === taskId);
 
   if (!task) {
     alert("Task not found!");
@@ -184,12 +186,18 @@ function openTask(taskId) {
       <body>
         <h1>Task Details</h1>
         <p><strong>ID:</strong> ${task.id}</p>
-        <p><strong>Title:</strong> <span class="${task.completed ? 'completed' : ''}">
+        <p><strong>Title:</strong> <span class="${
+          task.completed ? "completed" : ""
+        }">
           ${task.title}
-          <p><strong>Description:</strong> <span class="${task.completed ? 'completed' : ''}">
+          <p><strong>Description:</strong> <span class="${
+            task.completed ? "completed" : ""
+          }">
           ${task.description}
         </span></p>
-        <p><strong>Status:</strong> ${task.completed ? "Completed" : "Pending"}</p>
+        <p><strong>Status:</strong> ${
+          task.completed ? "Completed" : "Pending"
+        }</p>
       </body>
     </html>
   `;
@@ -197,7 +205,3 @@ function openTask(taskId) {
   newTab.document.write(html);
   newTab.document.close();
 }
-
-
-
-

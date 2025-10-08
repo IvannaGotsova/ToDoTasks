@@ -8,105 +8,73 @@
     <title>To Do Tasks</title>
 </head>
 <body>
-    <custom-header></custom-header>
-    <main>
-        <section class="AppTopPart">
-            <h2>Tasks for Today: <span id="currentDate"></span></h2>
-            <script>
-                var today = new Date();
-                var dd = String(today.getDate()).padStart(2, '0');
-                var mm = String(today.getMonth() + 1).padStart(2, '0'); 
-                var yyyy = today.getFullYear();
-                today = mm + '/' + dd + '/' + yyyy;
-                document.getElementById("currentDate").innerHTML = today;
-            </script>
-            <h3>Add New Task</h3>
-            <div id="AppTopPartForm">
-                <input id="AppTopPartInput" type="text" placeholder="Add Your Task Here" />
-                <button type="button" id="AppTopPartButton">Add</button>
-            </div>
-        </section>
-        <hr>
+  <main>
+    <section class="AppTopPart">
+      <h2>Tasks for Today: <span id="currentDate"></span></h2>
+        <script>
+          var today = new Date();
+          var dd = String(today.getDate()).padStart(2, '0');
+          var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+          var yyyy = today.getFullYear();
+          today = mm + '/' + dd + '/' + yyyy;
+          document.getElementById("currentDate").innerHTML = today;
+        </script>
+      <h3>Add New Task</h3>
+        <div id="AppTopPartForm">
+          <input id="AppTopPartInput" type="text" placeholder="Add Your Task Here" />
+          <button type="button" id="AppTopPartButton">Add</button>
+        </div>
+    </section>
+    <hr>
         
-        <section class="AppMiddlePart">
-            <h3>Remaining Tasks:</h3>
-              <div id="tasks-list"></div>
-              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-              <script>
-                $(function ()
-                   {
-                    $.getScript("js/tasks.js");
-                  });
-              </script>
-              <div id="taskList"></div>
-              <br>
-              
-            <button type="button" id="AppMiddlePartSelectedButton">Remove Selected</button>
-            <button type="button" id="AppMiddlePartAllButton">Remove All Tasks</button>
-            <br>
-            <br>
-            <button type="button" id="AppMiddlePartAllTasksButton">All Tasks</button>
-        </section>
-        <hr>
+    <section class="AppMiddlePart">
+      <h3>Tasks:</h3>
+      <div id="taskList"></div>
+      <br>
+      <button type="button" id="AppMiddlePartSelectedButton">Remove Selected</button>
+      <button type="button" id="AppMiddlePartAllButton">Remove All Tasks</button>
+      <br><br>
+      <button type="button" id="AppMiddlePartAllTasksButton">All Tasks</button>
+    </section>
+    <hr>
 
-        <section class="AppBottomPart">
-            <h3>Lists!!!</h3>
-            <input id="AppBottomPartInputList" type="text"
-                placeholder="Add Your List Here" />
-            <button type="button" id="AppBottomPartButtonList">Add</button>    
-            <br>
-            <br>   
-
-            <div id="lists-list"></div>
-              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-              <script>
-                $(function ()
-                   {
-                    $.getScript("js/lists.js");
-                  });
-              </script>
-              <div id="listList"></div>
-              <br>
-              <button type="button" id="AppBottomPartSelectedButtonList">Remove Selected</button>
-              <button type="button" id="AppBottomPartAllButtonList">Remove All Lists</button> 
-              <br>
-            <div class="AppListsContainer">
-                <br>
-                <button type="button" id="AppBottomPartButtonAllLists">All Lists</button></a>
-            </div>
-            <hr>
-
-            <h3>Notes!!!</h3>
-            <input id="AppBottomPartInputNote" type="text"
-                placeholder="Add Your Note Here" />
-            <button type="button" id="AppBottomPartButtonNote">Add</button>
-            <br>
-            <br>         
-            <div id="notes-list"></div>
-              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-              <script>
-                $(function ()
-                   {
-                    $.getScript("js/notes.js");
-                  });
-              </script>
-              <div id="noteList"></div>
-              <br>
-            <button type="button" id="AppBottomPartSelectedButtonNote">Remove Selected</button>
-            <button type="button" id="AppBottomPartAllButtonNote">Remove All Notes</button>  
-              <br>
-            <div class="AppNotesContainer">
-                <br>
-                <button type="button" id="AppBottomPartButtonAllNotes">All Notes</button></a>
-            </div>
-        </section>
-        <br><br>
-        <section>
-          <a href="html/about-us.html"><button type="button" id="about-us">About Us</button></a>
-          <a href="html/contacts.html"><button type="button" id="contacts">Contacts</button></a>
-        </section>
-    </main>
-    <custom-footer></custom-footer>
+    <section class="AppBottomPart">
+      <h3>Lists!!!</h3>
+      <input id="AppBottomPartInputList" type="text" placeholder="Add Your List Here" />
+      <button type="button" id="AppBottomPartButtonList">Add</button>    
+      <br><br> 
+      <div id="listList"></div>
+      <br>
+      <button type="button" id="AppBottomPartSelectedButtonList">Remove Selected</button>
+      <button type="button" id="AppBottomPartAllButtonList">Remove All Lists</button> 
+      <br>
+      <div class="AppListsContainer">
+        <br>
+        <button type="button" id="AppBottomPartButtonAllLists">All Lists</button></a>
+      </div>
+      <hr>
+      <h3>Notes!!!</h3>
+      <input id="AppBottomPartInputNote" type="text" placeholder="Add Your Note Here" />
+      <button type="button" id="AppBottomPartButtonNote">Add</button>
+      <br><br>         
+      <div id="noteList"></div>
+      <br>
+      <button type="button" id="AppBottomPartSelectedButtonNote">Remove Selected</button>
+      <button type="button" id="AppBottomPartAllButtonNote">Remove All Notes</button>  
+      <br>
+      <div class="AppNotesContainer">
+        <br>
+        <button type="button" id="AppBottomPartButtonAllNotes">All Notes</button></a>
+      </div>
+    </section>
+    <hr>
+    
+    <br><br>
+    <section>
+      <a href="html/about-us.html"><button type="button" id="about-us">About Us</button></a>
+      <a href="html/contacts.html"><button type="button" id="contacts">Contacts</button></a>
+    </section>
+  </main>
   <script src="js/tasks.js"></script>
   <script src="js/tasks-all.js" defer></script>
   <script src="js/tasks-actions.js" defer></script>
